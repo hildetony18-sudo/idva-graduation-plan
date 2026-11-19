@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IDVA Graduation Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Lato:wght@400;700&display=swap');
+
+  :root{
+    --ink:#2b2b2b; --ink-soft:#555a6b;
+    --line:#cfd2e6; --line-soft:#e3e5f3;
+    --paper:#f6f6fb; --card:#ffffff; --card-2:#edeeff;
+    --primary:#232984; --primary-deep:#0c1159;
+    --purple:#6e53a2; --purple-deep:#54397f; --purple-wash:#f1ebfd;
+    --green:#2f6f4e; --green-wash:#eaf5ee;
+    --red:#a8321f; --focus:#6e53a2;
+    --shadow:0 1px 2px rgba(12,17,89,.06),0 8px 20px -12px rgba(12,17,89,.22);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e9eaf5; --ink-soft:#aeb2c9;
+      --line:#34385f; --line-soft:#2a2e52;
+      --paper:#10132b; --card:#171b3a; --card-2:#1e2347;
+      --primary:#9aa4ff; --primary-deep:#c3c9ff;
+      --purple:#b9a3ec; --purple-deep:#d2c4f5; --purple-wash:#272046;
+      --green:#7bc99a; --green-wash:#152720;
+      --red:#f0907c; --focus:#b9a3ec;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.55);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Lato',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Source Sans 3','Lato',system-ui,sans-serif;margin:0;text-wrap:balance;}
+  a{color:var(--purple-deep);}
+  button,select,input,textarea{font-family:inherit;}
+  .wrap{max-width:1320px;margin:0 auto;padding:22px 22px 60px;}
+
+  .masthead{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(135deg,#232984 0%,#0c1159 100%);border-radius:14px;padding:20px 26px;box-shadow:var(--shadow);color:#f3f4ff;border-bottom:5px solid #6e53a2;}
+  .badge{flex:0 0 auto;width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:19px;color:#fff;letter-spacing:.03em;border:1px solid rgba(255,255,255,.3);}
+  .masthead-title{flex:1 1 240px;min-width:220px;}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#d6d9ff;font-weight:700;margin:0 0 2px;}
+  .masthead h1{font-size:clamp(22px,2.6vw,32px);font-weight:700;color:#fff;}
+  .masthead .org{font-size:13px;color:#dfe1ff;margin-top:3px;}
+  .masthead-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+  .btn{appearance:none;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff;padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;}
+  .btn:hover{background:rgba(255,255,255,.2);}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .btn-primary{background:#fff;color:#0c1159;border-color:#fff;}
+  .btn-primary:hover{background:#edeeff;}
+
+  .bar{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:13px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .bar .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);font-weight:700;white-space:nowrap;}
+  .bar .sub{font-size:12.5px;color:var(--ink-soft);flex:1 1 220px;min-width:180px;}
+  .bar input[type=search],.bar select{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;color:var(--ink);background:var(--paper);min-width:150px;}
+  .sbtn{appearance:none;border:1.5px solid var(--primary);background:var(--primary);color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+  .sbtn:hover{background:var(--primary-deep);}
+  @media (prefers-color-scheme: dark){ .sbtn{color:#0c1159;} .sbtn.secondary{color:var(--primary);} }
+  .sbtn.secondary{background:transparent;color:var(--primary);}
+  .sbtn.secondary:hover{background:var(--card-2);}
+
+  .idbar{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 20px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:16px;align-items:end;}
+  .field label,.stat label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);font-weight:700;margin-bottom:6px;}
+  .field input[type=text],.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:14.5px;color:var(--ink);background:var(--paper);}
+  .field select.accent{border:1.5px solid var(--purple);background:var(--purple-wash);color:var(--purple-deep);font-weight:700;}
+  .field input:focus-visible,.field select:focus-visible,.bar input:focus-visible,.bar select:focus-visible{outline:2px solid var(--focus);outline-offset:1px;}
+  .stat{text-align:right;min-width:128px;}
+  .stat .num{font-family:'Source Sans 3',sans-serif;font-size:28px;font-weight:700;color:var(--green);line-height:1;font-variant-numeric:tabular-nums;}
+  .stat .num .of{font-size:14px;color:var(--ink-soft);font-weight:600;}
+  .stat .meter{height:6px;border-radius:4px;background:var(--line-soft);margin-top:8px;overflow:hidden;}
+  .stat .meter>i{display:block;height:100%;width:0;background:var(--green);transition:width .25s ease;}
+
+  .board{margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:start;}
+  .col{display:flex;flex-direction:column;gap:14px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+  .panel-head{padding:11px 16px;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;display:flex;align-items:baseline;justify-content:space-between;gap:10px;color:#fff;background:var(--primary);}
+  @media (prefers-color-scheme: dark){ .panel-head{color:#0c1159;} }
+  .panel-head.purple{background:var(--purple);}
+  .panel-head .cr{font-size:12px;font-weight:600;opacity:.92;letter-spacing:.03em;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .panel-body{padding:8px 8px 6px;}
+  .panel-foot{padding:6px 16px 11px;font-size:11px;line-height:1.4;color:var(--ink-soft);border-top:1px solid var(--line-soft);}
+  .panel-foot b{font-weight:700;}
+
+  .row{display:flex;align-items:flex-start;gap:10px;padding:7px 8px;border-radius:8px;cursor:pointer;}
+  .row:hover{background:var(--card-2);}
+  .row:focus-visible{outline:2px solid var(--focus);outline-offset:1px;}
+  .row.done .rowtext{color:var(--ink-soft);}
+  .chk{flex:0 0 auto;width:18px;height:18px;margin-top:2px;border-radius:5px;border:1.6px solid var(--ink-soft);background:var(--paper);display:flex;align-items:center;justify-content:center;transition:background .12s,border-color .12s;}
+  .row.done .chk{background:var(--green);border-color:var(--green);}
+  .chk svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:opacity .1s,transform .1s;}
+  .row.done .chk svg{opacity:1;transform:scale(1);}
+  .task-row .chk{border-radius:50%;}
+  .rowtext{font-size:13.6px;line-height:1.35;flex:1 1 auto;min-width:0;}
+  .rowtext .sem{color:var(--ink-soft);font-weight:700;font-size:12px;}
+  .inf{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:6px;border-radius:50%;background:var(--purple-wash);color:var(--purple-deep);font-size:10px;font-weight:700;cursor:help;border:1px solid var(--purple);vertical-align:middle;}
+  select.inline-select,input.elective-input{width:100%;font-size:13px;color:var(--ink);}
+  select.inline-select{border:1px solid var(--line);border-radius:6px;background:var(--paper);padding:4px 6px;}
+  input.elective-input{border:none;border-bottom:1px dashed var(--line);background:transparent;padding:1px 2px;}
+  input.elective-input:focus-visible{outline:none;border-bottom-color:var(--focus);}
+  input.elective-input::placeholder{color:var(--ink-soft);opacity:.7;}
+  .sub-label{padding:10px 10px 3px;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700;}
+  .goalbox{padding:10px 12px 6px;display:grid;gap:8px;}
+  .goalbox select,.goalbox input{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13.5px;color:var(--ink);background:var(--paper);}
+  .notes-head{padding:12px 16px 0;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);font-weight:700;}
+  .notes-area{width:100%;min-height:110px;border:none;resize:vertical;background:transparent;color:var(--ink);font-size:13px;padding:8px 16px 16px;}
+  .notes-area:focus-visible{outline:none;}
+  .footnote{margin-top:16px;font-size:12px;color:var(--ink-soft);line-height:1.65;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;}
+  .footnote b{color:var(--ink);}
+
+  .toast-stack{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:1200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;}
+  .toast{background:var(--primary-deep);color:#fff;font-size:13.5px;font-weight:700;padding:11px 18px;border-radius:9px;box-shadow:var(--shadow);max-width:460px;text-align:center;opacity:0;transform:translateY(-8px);transition:opacity .18s,transform .18s;}
+  @media (prefers-color-scheme: dark){ .toast{background:#c3c9ff;color:#0c1159;} }
+  .toast.error{background:var(--red);color:#fff;}
+  .toast.show{opacity:1;transform:none;}
+  .overlay{position:fixed;inset:0;background:rgba(10,12,40,.55);display:flex;align-items:flex-start;justify-content:center;padding:80px 20px;z-index:1000;}
+  .modal{background:var(--card);border-radius:14px;box-shadow:var(--shadow);width:100%;max-width:420px;border:1px solid var(--line);}
+  .modal .body{padding:18px 20px 6px;font-size:14px;}
+  .modal .actions{padding:14px 20px 20px;display:flex;gap:10px;justify-content:flex-end;}
+
+
+  .modal.wide{max-width:1020px;max-height:84vh;display:flex;flex-direction:column;overflow:hidden;}
+  .modal.wide .mhead{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .modal.wide .mhead h2{font-size:18px;color:var(--primary);}
+  .modal.wide .mtools{padding:10px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line-soft);}
+  .modal.wide .mtools select,.modal.wide .mtools input{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:13.5px;color:var(--ink);background:var(--paper);}
+  .modal.wide .mscroll{overflow:auto;padding:6px 20px 16px;}
+  .dl-note{font-size:12.5px;color:var(--ink-soft);line-height:1.5;padding:10px 0 4px;}
+  table.dl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+  table.dl th{position:sticky;top:0;background:var(--card);text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);padding:8px 8px;border-bottom:2px solid var(--line);}
+  table.dl td{padding:7px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  table.dl tr.go{cursor:pointer;} table.dl tr.go:hover{background:var(--card-2);}
+  table.sum th,table.sum td{text-align:right;} table.sum th:first-child,table.sum td:first-child{text-align:left;}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;}
+  .pill.met{background:var(--green-wash);color:var(--green);}
+  .pill.ip{background:var(--purple-wash);color:var(--purple-deep);}
+  .pill.no{background:#fdecea;color:#a8321f;}
+  @media (prefers-color-scheme: dark){ .pill.no{background:#3a1c18;color:#f0907c;} }
+  .warn{color:var(--red);font-weight:700;font-size:11.5px;}
+
+  @media (max-width:980px){
+    .board{grid-template-columns:1fr;}
+    .idbar{grid-template-columns:1fr 1fr;}
+    .idbar .stat{text-align:left;}
+  }
+  @page{size:portrait;margin:0.4in;}
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+    html,body{background:#fff;height:auto!important;}
+    .no-print{display:none!important;}
+    .wrap{padding:6px;max-width:none;width:1360px;}
+    .board{grid-template-columns:1fr 1fr 1fr;gap:8px;}
+    .panel,.idbar,.masthead{box-shadow:none;break-inside:avoid;}
+    #printScaleOuter{overflow:hidden;}
+  }
+</style>
+</head>
+<body>
+<div id="printScaleOuter">
+<div class="wrap">
+  <div class="toast-stack no-print" id="toastStack"></div>
+
+  <header class="masthead">
+    <div class="badge" id="badge" aria-hidden="true">IDVA</div>
+    <div class="masthead-title">
+      <p class="eyebrow" id="eyebrow">Idaho Virtual Academy</p>
+      <h1 id="title">IDVA Graduation Plan</h1>
+      <p class="org" id="subtitle"></p>
+    </div>
+    <div class="masthead-actions no-print">
+      <button class="btn" id="loadBtn" type="button" title="Reopen a plan you saved earlier">Load Progress</button>
+      <input type="file" id="loadFileInput" accept="application/json,.json" hidden>
+      <button class="btn" id="saveBtn" type="button" title="Download this student's plan so you can reopen it later">Save Progress</button>
+      <button class="btn" id="resetBtn" type="button">Reset form</button>
+      <button class="btn btn-primary" id="printBtn" type="button">Print / Save PDF</button>
+    </div>
+  </header>
+
+  <section class="bar no-print" id="rosterBar">
+    <div class="lbl">School</div>
+    <select id="schoolSel" aria-label="School" style="font-weight:700;min-width:210px;"></select>
+    <div class="sub" id="rosterSub">Import a school roster (CSV) to pre-fill every student's plan. The file stays in this browser and is never uploaded.</div>
+    <button class="sbtn secondary" id="dlBtn" type="button">Digital Literacy tracker</button>
+    <button class="sbtn secondary" id="templateBtn" type="button">CSV template</button>
+    <button class="sbtn" id="importBtn" type="button">Import roster CSV</button>
+    <input type="file" id="csvInput" accept=".csv,text/csv" hidden>
+  </section>
+
+  <section class="bar no-print" id="pickerBar" hidden>
+    <div class="lbl">Student</div>
+    <input type="search" id="pickSearch" placeholder="Search by initial or last name…" autocomplete="off" aria-label="Search students">
+    <select id="pickClass" aria-label="Filter by class"></select>
+    <select id="pickStudent" aria-label="Choose student" style="flex:1 1 220px;"></select>
+  </section>
+
+  <section class="idbar">
+    <div class="field">
+      <label for="studentName">Student (first initial + last name)</label>
+      <input type="text" id="studentName" placeholder="e.g., J. Smith" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="classSel">Graduating class</label>
+      <select id="classSel" class="accent"></select>
+    </div>
+    <div class="field">
+      <label for="gradDate">Expected graduation date</label>
+      <input type="text" id="gradDate" placeholder="May 2027" autocomplete="off">
+    </div>
+    <div class="stat">
+      <label>Credits earned</label>
+      <div class="num"><span id="coreTotal">0</span><span class="of" id="coreOf"> / 46</span></div>
+      <div class="meter"><i id="coreBar"></i></div>
+    </div>
+  </section>
+
+  <main class="board">
+    <div class="col" id="col1"></div>
+    <div class="col" id="col2"></div>
+    <div class="col" id="col3"></div>
+  </main>
+
+  <p class="footnote" id="footnote"></p>
+</div>
+</div>
+
+<script src="requirements.js"></script>
+<script>
+(function(){
+  const R = window.IDVA_REQUIREMENTS;
+  if (!R){ document.body.insertAdjacentHTML('afterbegin','<p style="padding:20px;font-family:sans-serif">requirements.js did not load. Make sure it is in the same folder as index.html.</p>'); return; }
+
+  /* ---------- utils ---------- */
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const CHECK = '<svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function toast(msg, isErr){
+    const el = document.createElement('div');
+    el.className = 'toast'+(isErr?' error':''); el.textContent = msg;
+    $('toastStack').appendChild(el);
+    requestAnimationFrame(()=>el.classList.add('show'));
+    setTimeout(()=>{ el.classList.remove('show'); setTimeout(()=>el.remove(),220); }, isErr?5200:3400);
+  }
+  function confirmBox(msg, okLabel){
+    return new Promise(res=>{
+      const o = document.createElement('div'); o.className='overlay';
+      o.innerHTML = '<div class="modal"><div class="body">'+esc(msg)+'</div><div class="actions"><button class="sbtn secondary" id="cNo" type="button">Cancel</button><button class="sbtn" id="cYes" type="button">'+esc(okLabel||'OK')+'</button></div></div>';
+      document.body.appendChild(o);
+      const done = v=>{ o.remove(); document.removeEventListener('keydown',k); res(v); };
+      const k = e=>{ if(e.key==='Escape') done(false); };
+      document.addEventListener('keydown',k);
+      o.querySelector('#cNo').onclick=()=>done(false);
+      o.querySelector('#cYes').onclick=()=>done(true);
+      o.addEventListener('click',e=>{ if(e.target===o) done(false); });
+      o.querySelector('#cYes').focus();
+    });
+  }
+  /* Names are always shown as first initial + last name. */
+  function initialName(v){
+    const t = String(v||'').trim().replace(/\s+/g,' ');
+    if(!t) return '';
+    if(t.indexOf(',')!==-1){ const p=t.split(','); return initialName(p.slice(1).join(' ')+' '+p[0]); }
+    const parts = t.split(' ');
+    if(parts.length===1) return parts[0];
+    return parts[0].replace(/\./g,'').charAt(0).toUpperCase()+'. '+parts.slice(1).join(' ');
+  }
+  const stem = n => (String(n||'').replace(/[^A-Za-z]+/g,'_').replace(/^_+|_+$/g,'')) || 'student';
+
+  /* ---------- school ---------- */
+  const SCHOOLS = R.schools || [{key:'IDVA',name:'Idaho Virtual Academy',short:'IDVA'}];
+  let school = R.defaultSchool || SCHOOLS[0].key;
+  const schoolInfo = k => SCHOOLS.find(x=>x.key===k) || SCHOOLS[0];
+
+  /* ---------- plan state ---------- */
+  function newPlan(){ return { school:school, name:'', classYear:R.defaultClass||R.classes[0], gradDate:'May '+(R.defaultClass||R.classes[0]), goal:'', pathway:'', notes:'', core:{}, extra:{}, adv:{}, inferred:{} }; }
+  let plan = newPlan();
+  let roster = [];        // [{plan}] in memory only
+  let current = -1;       // index in roster, -1 = standalone plan
+
+  /* ---------- requirement helpers ---------- */
+  const visible = (item, cls) => !((item.minClass && cls < item.minClass) || (item.maxClass && cls > item.maxClass));
+  function visiblePanels(cls){ return R.panels.filter(p=>visible(p,cls)); }
+  function panelCredits(p, cls){
+    if (p.fill === 'remaining'){
+      const used = visiblePanels(cls).filter(q=>q.fill!=='remaining').reduce((a,q)=>a+q.credits,0);
+      return R.totalCredits - used;
+    }
+    return p.credits;
+  }
+  function panelRows(p, cls){
+    if (p.fill === 'remaining'){
+      return Array.from({length:panelCredits(p,cls)}, (_,i)=>({t:'Elective '+(i+1), input:true}));
+    }
+    return p.rows;
+  }
+  const ck = (p,i) => p.id+'|'+i;
+
+  function earned(){
+    let n = 0;
+    visiblePanels(plan.classYear).forEach(p=>{
+      panelRows(p, plan.classYear).forEach((_,i)=>{ const v = plan.core[ck(p,i)]; if (v && v.done) n++; });
+    });
+    return n;
+  }
+  function updateTotals(){
+    const n = earned();
+    $('coreTotal').textContent = n;
+    $('coreOf').textContent = ' / '+R.totalCredits;
+    $('coreBar').style.width = Math.min(100, Math.round(n/R.totalCredits*100))+'%';
+  }
+
+  /* ---------- rendering ---------- */
+  function mkRow(item, get, set, opts){
+    opts = opts||{};
+    const row = document.createElement('div');
+    row.className = 'row'+(opts.task?' task-row':'');
+    const v = get();
+    if (v && v.done) row.classList.add('done');
+    const box = '<span class="chk">'+CHECK+'</span>';
+    let inner = '';
+    if (item.options || item.input){
+      inner = box+'<div class="rowtext"></div>';
+      row.innerHTML = inner;
+      const holder = row.querySelector('.rowtext');
+      let ctl;
+      if (item.options){
+        ctl = document.createElement('select'); ctl.className='inline-select';
+        ctl.setAttribute('aria-label', item.t);
+        const o0 = document.createElement('option'); o0.value=''; o0.textContent='Choose course…'; ctl.appendChild(o0);
+        item.options.forEach(op=>{ const o=document.createElement('option'); o.value=op; o.textContent=op; ctl.appendChild(o); });
+        if (v && v.val && item.options.indexOf(v.val)===-1){ const ox=document.createElement('option'); ox.value=v.val; ox.textContent=v.val; ctl.appendChild(ox); }
+        ctl.value = (v && v.val) || '';
+      } else {
+        ctl = document.createElement('input'); ctl.type='text'; ctl.className='elective-input';
+        ctl.placeholder = item.t; ctl.value = (v && v.val) || '';
+        ctl.setAttribute('aria-label', item.t);
+      }
+      const onVal = ()=>{ const cur = get()||{}; cur.val = ctl.value; set(cur); };
+      ctl.addEventListener(item.options?'change':'input', onVal);
+      holder.appendChild(ctl);
+      const toggle = ()=>{ const cur = get()||{}; cur.done = !cur.done; set(cur); row.classList.toggle('done', !!cur.done); row.setAttribute('aria-checked', cur.done?'true':'false'); if(opts.after) opts.after(); };
+      row.addEventListener('click', e=>{ if (e.target===ctl) return; toggle(); });
+      row.tabIndex = 0; row.setAttribute('role','checkbox'); row.setAttribute('aria-checked', v&&v.done?'true':'false');
+      row.addEventListener('keydown', e=>{ if (e.target===ctl) return; if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); }});
+    } else {
+      row.innerHTML = box+'<div class="rowtext">'+esc(item.t)+(item.sem?' <span class="sem">('+esc(item.sem)+')</span>':'')+'</div>';
+      const toggle = ()=>{ const cur = get()||{}; cur.done = !cur.done; set(cur); row.classList.toggle('done', !!cur.done); row.setAttribute('aria-checked', cur.done?'true':'false'); if(opts.after) opts.after(); };
+      row.addEventListener('click', toggle);
+      row.tabIndex = 0; row.setAttribute('role','checkbox'); row.setAttribute('aria-checked', v&&v.done?'true':'false');
+      row.addEventListener('keydown', e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); }});
+    }
+    if (opts.inferredKey && v && v.done && plan.inferred[opts.inferredKey]){
+      const i = document.createElement('span'); i.className='inf'; i.textContent='i';
+      i.title = 'Filled from the imported credit total, not from a matched course. Verify with the transcript.';
+      row.querySelector('.rowtext').appendChild(i);
+    }
+    return row;
+  }
+
+  function buildPanel(p){
+    const cls = plan.classYear;
+    const panel = document.createElement('section'); panel.className='panel';
+    const crs = panelCredits(p, cls);
+    panel.innerHTML = '<div class="panel-head"><h3>'+esc(p.title)+'</h3><span class="cr">'+crs+' cr</span></div>';
+    const body = document.createElement('div'); body.className='panel-body';
+    panelRows(p, cls).forEach((item,i)=>{
+      const key = ck(p,i);
+      body.appendChild(mkRow(item,
+        ()=>plan.core[key],
+        val=>{ plan.core[key]=val; delete plan.inferred[key]; },
+        { after:()=>{ updateTotals(); const inf=panel.querySelectorAll('.inf'); inf.forEach(x=>{ if(!x.parentNode.parentNode.classList.contains('done')) x.remove(); }); },
+          inferredKey:key }));
+    });
+    panel.appendChild(body);
+    if (p.source){ const f=document.createElement('div'); f.className='panel-foot'; f.innerHTML='<b>Source:</b> '+esc(p.source); panel.appendChild(f); }
+    return panel;
+  }
+
+  function renderCore(){
+    const c1=$('col1'), c2=$('col2'); c1.innerHTML=''; c2.innerHTML='';
+    visiblePanels(plan.classYear).forEach(p=>{ (p.col===1?c1:c2).appendChild(buildPanel(p)); });
+    updateTotals();
+  }
+
+  function simplePanel(title, headClass){
+    const panel = document.createElement('section'); panel.className='panel';
+    panel.innerHTML = '<div class="panel-head '+(headClass||'')+'"><h3>'+esc(title)+'</h3><span class="cr">no credit</span></div>';
+    const body = document.createElement('div'); body.className='panel-body'; panel.appendChild(body);
+    return {panel, body};
+  }
+
+  function renderCol3(){
+    const c3=$('col3'); c3.innerHTML='';
+    const cls = plan.classYear;
+
+    // Career Pathway Plan
+    const pp = document.createElement('section'); pp.className='panel';
+    pp.innerHTML = '<div class="panel-head purple"><h3>Career Pathway Plan</h3></div>';
+    const gb = document.createElement('div'); gb.className='goalbox';
+    const sel = document.createElement('select'); sel.setAttribute('aria-label','Post-secondary goal');
+    sel.innerHTML = '<option value="">Post-secondary goal…</option>'+R.postSecondaryGoals.map(g=>'<option>'+esc(g)+'</option>').join('');
+    sel.value = plan.goal||'';
+    sel.addEventListener('change',()=>{ plan.goal = sel.value; });
+    const inp = document.createElement('input'); inp.type='text'; inp.placeholder='Career interest / pathway (e.g., Health Science)'; inp.setAttribute('aria-label','Career interest or pathway');
+    inp.value = plan.pathway||''; inp.addEventListener('input',()=>{ plan.pathway = inp.value; });
+    gb.appendChild(sel); gb.appendChild(inp); pp.appendChild(gb);
+    const pf = document.createElement('div'); pf.className='panel-foot'; pf.innerHTML='<b>Source:</b> State rule: a parent-approved Career Pathway Plan is developed by the end of 8th grade and reviewed every year.';
+    pp.appendChild(pf);
+    c3.appendChild(pp);
+
+    // Additional requirements
+    const ar = simplePanel('Additional Requirements');
+    R.additional.filter(a=>visible(a,cls)).forEach((a,i)=>{
+      const key = 'add|'+a.t;
+      ar.body.appendChild(mkRow({t:a.t}, ()=>plan.extra[key], v=>{plan.extra[key]=v;}, {task:true}));
+    });
+    c3.appendChild(ar.panel);
+
+    // Advanced opportunities
+    const ad = simplePanel('Advanced Opportunities','purple');
+    const sl = document.createElement('div'); sl.className='sub-label'; sl.textContent='Check any the student has used or plans to use'; ad.body.appendChild(sl);
+    R.advanced.forEach(a=>{
+      ad.body.appendChild(mkRow({t:a}, ()=>plan.adv[a], v=>{plan.adv[a]=v;}, {task:true}));
+    });
+    c3.appendChild(ad.panel);
+
+    // Notes
+    const nt = document.createElement('section'); nt.className='panel';
+    nt.innerHTML = '<div class="notes-head">Notes / advisor comments</div>';
+    const ta = document.createElement('textarea'); ta.className='notes-area'; ta.setAttribute('aria-label','Notes');
+    ta.placeholder='Post-secondary plans, credit recovery, counselor comments…';
+    ta.value = plan.notes||''; ta.addEventListener('input',()=>{ plan.notes = ta.value; });
+    nt.appendChild(ta); c3.appendChild(nt);
+  }
+
+  function renderHeader(){
+    const cls = plan.classYear;
+    const si = schoolInfo(plan.school||school);
+    $('eyebrow').textContent = si.name; $('title').textContent = si.short+' Graduation Plan'; $('badge').textContent = si.short;
+    document.title = si.short+' Graduation Plan';
+    $('subtitle').textContent = 'Idaho graduation requirements · Class of '+cls+' · '+R.totalCredits+' credits';
+    const fr = cls >= R.futureReadinessFirstClass;
+    const dl = cls >= R.digitalLiteracyFirstClass;
+    $('footnote').innerHTML =
+      'Credit structure follows the Idaho State Board of Education minimums (IDAPA 08.02.03.105): English 8 &middot; Communication Arts (Speech) 1 &middot; Math 6 &middot; Science 6 &middot; Social Studies 5 &middot; Fine Arts/World Language/Humanities 2 &middot; Health 1 '
+      + (dl ? '&middot; Digital Literacy 1 &middot; Electives 16' : '&middot; Electives 17 (Digital Literacy is not required for students graduating before 2028)')
+      + ' for a <b>'+R.totalCredits+'-credit total</b>. '
+      + (fr ? 'The Class of '+cls+' completes the <b>Future Readiness Project</b> in place of the Senior Project. ' : 'The Class of '+cls+' completes the <b>Senior Project</b> (the Future Readiness Project begins with the Class of '+R.futureReadinessFirstClass+'). ')
+      + 'Students must also pass the civics test and complete a U.S. government and history course. '
+      + 'Planning aid only &mdash; confirm each student\'s status with an IDVA counselor. '
+      + 'Requirements last reviewed '+esc(R.lastReviewed)+'. '
+      + '<a href="'+esc(R.links.idvaGraduationPlanning)+'" target="_blank" rel="noopener">IDVA graduation planning</a> &middot; '
+      + '<a href="'+esc(R.links.stateRequirements)+'" target="_blank" rel="noopener">Idaho State Dept. of Education requirements</a> &middot; '
+      + '<a href="'+esc(R.links.idva)+'" target="_blank" rel="noopener">idva.k12.com</a>.';
+  }
+
+  function renderAll(){
+    $('studentName').value = plan.name||'';
+    $('classSel').value = String(plan.classYear);
+    $('gradDate').value = plan.gradDate||'';
+    renderHeader(); renderCore(); renderCol3();
+  }
+
+  /* ---------- class selector / identity ---------- */
+  R.classes.forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent='Class of '+c; $('classSel').appendChild(o); });
+  $('classSel').addEventListener('change',()=>{
+    const old = plan.classYear;
+    plan.classYear = Number($('classSel').value);
+    if (!plan.gradDate || plan.gradDate === 'May '+old) plan.gradDate = 'May '+plan.classYear;
+    renderAll();
+  });
+  $('studentName').addEventListener('blur',()=>{ plan.name = initialName($('studentName').value); $('studentName').value = plan.name; refreshPicker(); });
+  $('gradDate').addEventListener('input',()=>{ plan.gradDate = $('gradDate').value; });
+
+  /* ---------- save / load / reset / print ---------- */
+  $('saveBtn').addEventListener('click',()=>{
+    plan.name = initialName($('studentName').value);
+    const payload = { idvaGradPlanSave:1, savedAt:new Date().toISOString(), plan:plan };
+    const blob = new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download='plan_'+stem(plan.name)+'.json';
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+  $('loadBtn').addEventListener('click',()=>$('loadFileInput').click());
+  $('loadFileInput').addEventListener('change',e=>{
+    const f = e.target.files && e.target.files[0]; e.target.value=''; if(!f) return;
+    const rd = new FileReader();
+    rd.onload = ()=>{
+      let p; try{ p = JSON.parse(rd.result); }catch(_){ toast("That file isn't a valid IDVA Graduation Plan save file.", true); return; }
+      if(!p || !p.idvaGradPlanSave || !p.plan){ toast("That file isn't a valid IDVA Graduation Plan save file.", true); return; }
+      plan = Object.assign(newPlan(), p.plan); plan.name = initialName(plan.name);
+      if (SCHOOLS.some(x=>x.key===plan.school)){ school = plan.school; $('schoolSel').value = school; } else plan.school = school;
+      if (R.classes.indexOf(plan.classYear)===-1) plan.classYear = R.defaultClass||R.classes[0];
+      renderAll(); toast('Plan loaded.');
+    };
+    rd.readAsText(f);
+  });
+  $('resetBtn').addEventListener('click', async ()=>{
+    if(!(await confirmBox('Clear every checkbox, course and note on this plan?','Clear it'))) return;
+    const keep = plan.classYear; plan = newPlan(); plan.classYear = keep; plan.gradDate='May '+keep;
+    renderAll();
+  });
+
+  const PW = 777, PH = 1017; // Letter minus 0.4in margins at 96dpi
+  function applyPrintScale(){
+    const wrap = document.querySelector('.wrap'), outer = $('printScaleOuter');
+    wrap.style.transform='none'; wrap.style.maxWidth='none'; wrap.style.width='1360px'; wrap.style.padding='6px';
+    const w = wrap.scrollWidth, h = wrap.scrollHeight;
+    const s = Math.min(PW/w, PH/h, 1)*0.93;
+    wrap.style.transformOrigin='top left'; wrap.style.transform='scale('+s+')';
+    outer.style.width=(w*s)+'px'; outer.style.height=(h*s)+'px';
+  }
+  function revertPrintScale(){
+    const wrap = document.querySelector('.wrap'), outer = $('printScaleOuter');
+    ['transform','width','maxWidth','padding','transformOrigin'].forEach(k=>wrap.style[k]='');
+    outer.style.width=''; outer.style.height='';
+  }
+  window.addEventListener('beforeprint',applyPrintScale);
+  window.addEventListener('afterprint',revertPrintScale);
+  $('printBtn').addEventListener('click',()=>{ applyPrintScale(); window.print(); setTimeout(revertPrintScale,1000); });
+
+  /* ---------- school selector ---------- */
+  SCHOOLS.forEach(x=>{ const o=document.createElement('option'); o.value=x.key; o.textContent=x.name+' ('+x.short+')'; $('schoolSel').appendChild(o); });
+  $('schoolSel').value = school;
+  $('schoolSel').addEventListener('change',()=>{
+    school = $('schoolSel').value;
+    const mine = roster.map((p,i)=>({p,i})).filter(o=>o.p.school===school);
+    if (mine.length){ current = mine[0].i; plan = roster[current]; }
+    else { current = -1; plan = newPlan(); }
+    refreshPicker(); renderAll(); rosterMsg();
+  });
+
+  /* ---------- weekly roster import (CSV) ---------- */
+  const ALIASES = {
+    school:['school','school name'], name:['student','student name','name'], first:['first name','firstname','first'], last:['last name','lastname','last','surname'],
+    grade:['grade','grade level'], cls:['class','graduating class','graduation year','grad year','class of','cohort'],
+    ela:['english','english language arts','language arts','ela'], speech:['speech','communication arts','communications'],
+    math:['math','mathematics'], science:['science'], social:['social studies'],
+    arts:['fine arts','humanities','world language','fine arts/world language','fine arts / world language','fine arts/world language/humanities'],
+    health:['health','health/wellness'], digital:['digital literacy','digital literacy earned'], dlip:['digital literacy in progress'], dlcourses:['digital literacy courses','digital literacy course(s)'],
+    electives:['electives','elective'],
+    civics:['civics','civics test'], project:['senior project','future readiness project','future readiness','project','senior/future readiness project'],
+    cpp:['career pathway plan','pathway plan'], stype:['stride plan type','plan type']
+  };
+  const TEMPLATE_HEADERS = ['School','Student','Grade','Class','English','Speech','Math','Science','Social Studies','Fine Arts/World Language','Health','Digital Literacy','Digital Literacy In Progress','Digital Literacy Courses','Electives','Civics Test','Senior/Future Readiness Project','Career Pathway Plan','Stride Plan Type'];
+
+  function parseCSV(text){
+    const rows=[]; let row=[], cell='', q=false;
+    text = text.replace(/^﻿/,'');
+    for(let i=0;i<text.length;i++){
+      const c=text[i];
+      if(q){ if(c==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else q=false; } else cell+=c; }
+      else if(c==='"') q=true;
+      else if(c===','){ row.push(cell); cell=''; }
+      else if(c==='\n'||c==='\r'){ if(c==='\r'&&text[i+1]==='\n') i++; row.push(cell); cell=''; if(row.some(x=>x.trim()!=='')) rows.push(row); row=[]; }
+      else cell+=c;
+    }
+    row.push(cell); if(row.some(x=>x.trim()!=='')) rows.push(row);
+    return rows;
+  }
+  const norm = s => String(s||'').toLowerCase().replace(/\s+/g,' ').trim();
+  const yes = v => /^(y|yes|true|1|pass|passed|complete|completed|done|x)$/i.test(String(v||'').trim());
+  function schoolKey(v){
+    const t = norm(v); if(!t) return null;
+    const hit = SCHOOLS.find(x=>norm(x.key)===t || norm(x.name)===t || norm(x.short)===t);
+    return hit ? hit.key : null;
+  }
+
+  function importCSV(text){
+    const rows = parseCSV(text);
+    if (rows.length<2){ toast('That file has no student rows.', true); return; }
+    const head = rows[0].map(norm);
+    const col = {};
+    Object.keys(ALIASES).forEach(k=>{ const i = head.findIndex(h=>ALIASES[k].indexOf(h)!==-1); if(i!==-1) col[k]=i; });
+    if (col.name===undefined && !(col.first!==undefined && col.last!==undefined)){
+      toast('Could not find a Student column. Download the CSV template to see the expected headings.', true); return;
+    }
+    const ignored = head.filter(h=>/\b(id|ssid|student id|student number|dob|birth|gender|iep|504|lunch)\b/.test(h));
+    const list = [];
+    rows.slice(1).forEach(r=>{
+      const nm = col.name!==undefined ? r[col.name] : (r[col.first]+' '+r[col.last]);
+      const name = initialName(nm); if(!name) return;
+      const p = newPlan(); p.name = name;
+      p.school = (col.school!==undefined && schoolKey(r[col.school])) || school;
+      const yr = col.cls!==undefined ? parseInt(String(r[col.cls]).replace(/\D/g,'').slice(-4),10) : NaN;
+      p.classYear = R.classes.indexOf(yr)!==-1 ? yr : (R.defaultClass||R.classes[0]);
+      p.gradDate = 'May '+p.classYear;
+      p.grade = col.grade!==undefined ? parseInt(r[col.grade],10)||'' : '';
+      p.dl = {
+        earned: col.digital!==undefined ? (parseFloat(r[col.digital])||0) : 0,
+        inProgress: col.dlip!==undefined ? (parseFloat(r[col.dlip])||0) : 0,
+        courses: col.dlcourses!==undefined ? String(r[col.dlcourses]||'').trim() : '',
+        stype: col.stype!==undefined ? String(r[col.stype]||'').trim() : ''
+      };
+      const fill = (panelId, val)=>{
+        const panel = R.panels.find(x=>x.id===panelId); if(!panel || !visible(panel,p.classYear)) return;
+        const n = Math.max(0, Math.floor((parseFloat(val)||0)+0.04));
+        const total = panelRows(panel,p.classYear).length;
+        for(let i=0;i<Math.min(n,total);i++){ const k=ck(panel,i); p.core[k]={done:true}; p.inferred[k]=true; }
+      };
+      ['ela','speech','math','science','social','arts','health','digital','electives'].forEach(k=>{
+        if(col[k]!==undefined) fill(k, r[col[k]]);
+      });
+      const setExtra = (cell, matcher)=>{
+        if(cell===undefined) return;
+        R.additional.filter(a=>visible(a,p.classYear) && matcher(a.t)).forEach(a=>{ p.extra['add|'+a.t] = {done: yes(cell)}; });
+      };
+      setExtra(col.civics!==undefined?r[col.civics]:undefined, t=>/civics test/i.test(t));
+      setExtra(col.project!==undefined?r[col.project]:undefined, t=>/project/i.test(t));
+      setExtra(col.cpp!==undefined?r[col.cpp]:undefined, t=>/career pathway plan/i.test(t));
+      list.push(p);
+    });
+    if(!list.length){ toast('No students were found in that file.', true); return; }
+    const touched = new Set(list.map(p=>p.school));
+    roster = roster.filter(p=>!touched.has(p.school)).concat(list);
+    roster.sort((a,b)=> a.school.localeCompare(b.school) || a.classYear-b.classYear || a.name.localeCompare(b.name));
+    if (!touched.has(school)){ school = list[0].school; }
+    $('schoolSel').value = school;
+    current = roster.findIndex(p=>p.school===school); plan = roster[current];
+    refreshPicker(); renderAll(); rosterMsg(ignored);
+    toast('Imported '+list.length+' students into '+Array.from(touched).join(' and ')+'.');
+  }
+
+  function rosterMsg(ignored){
+    const counts = SCHOOLS.map(x=>x.short+' '+roster.filter(p=>p.school===x.key).length).join(' · ');
+    $('rosterSub').textContent = roster.length
+      ? 'Rosters loaded (this session only): '+counts+'. Import next week\'s file to refresh.'+(ignored&&ignored.length?' Ignored columns: '+ignored.join(', ')+'.':'')
+      : "Import a school roster (CSV) to pre-fill every student's plan. The file stays in this browser and is never uploaded.";
+  }
+
+  function refreshPicker(){
+    const mine = roster.filter(p=>p.school===school);
+    $('pickerBar').hidden = !mine.length;
+    if(!mine.length) return;
+    const clsSel = $('pickClass'); const prev = clsSel.value;
+    const classes = Array.from(new Set(mine.map(p=>p.classYear))).sort();
+    clsSel.innerHTML = '<option value="">All classes</option>'+classes.map(c=>'<option value="'+c+'">Class of '+c+'</option>').join('');
+    clsSel.value = classes.map(String).indexOf(prev)!==-1 ? prev : '';
+    fillStudentList();
+  }
+  function fillStudentList(){
+    const q = norm($('pickSearch').value), c = $('pickClass').value, sel = $('pickStudent');
+    const items = roster.map((p,i)=>({p,i})).filter(o=>o.p.school===school && (!c||String(o.p.classYear)===c) && (!q||norm(o.p.name).indexOf(q)!==-1));
+    sel.innerHTML = items.length ? items.map(o=>'<option value="'+o.i+'">'+esc(o.p.name)+' — Class of '+o.p.classYear+'</option>').join('') : '<option value="">No matching students</option>';
+    if (items.some(o=>o.i===current)) sel.value = String(current);
+  }
+  $('pickSearch').addEventListener('input',fillStudentList);
+  $('pickClass').addEventListener('change',fillStudentList);
+  $('pickStudent').addEventListener('change',()=>{
+    const i = parseInt($('pickStudent').value,10); if(isNaN(i)) return;
+    current = i; plan = roster[i]; renderAll();
+  });
+
+  $('importBtn').addEventListener('click',()=>$('csvInput').click());
+  $('csvInput').addEventListener('change',e=>{
+    const f = e.target.files && e.target.files[0]; e.target.value=''; if(!f) return;
+    const rd = new FileReader(); rd.onload = ()=>importCSV(String(rd.result)); rd.readAsText(f);
+  });
+  $('templateBtn').addEventListener('click',()=>{
+    const csv = TEMPLATE_HEADERS.join(',')+'\r\n'+school+',J. Sample,10,2029,8,1,6,6,5,2,1,0,1,Digital Literacy (in progress),13,Yes,No,Yes,Future Readiness\r\n';
+    downloadText('IDVA_roster_template.csv', csv, 'text/csv');
+  });
+  function downloadText(name, text, type){
+    const blob = new Blob([text],{type:type||'text/plain'}); const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download=name;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  }
+
+  /* ---------- Digital Literacy tracker ----------
+     Idaho's Digital Literacy credit applies to students graduating after January 1, 2028
+     (classes at or above R.digitalLiteracyFirstClass). */
+  function dlStatus(p){
+    const row = p.core['digital|0'];
+    const earned = p.dl ? p.dl.earned : 0, ip = p.dl ? p.dl.inProgress : 0;
+    if ((row && row.done) || earned >= 1) return 'Met';
+    if (ip > 0 || earned > 0) return 'In progress';
+    return 'Not started';
+  }
+  function dlNote(p){
+    const t = p.dl && p.dl.stype;
+    if (t && /senior/i.test(t)) return 'Stride plan is the older Senior Project plan, so Digital Literacy is not tracked in Stride. Update the plan.';
+    if (!t || /none/i.test(t)) { if (t) return 'No Stride graduation plan assigned.'; }
+    return '';
+  }
+  function openTracker(){
+    const first = R.digitalLiteracyFirstClass;
+    const overlay = document.createElement('div'); overlay.className='overlay'; overlay.style.paddingTop='36px';
+    overlay.innerHTML =
+      '<div class="modal wide" role="dialog" aria-label="Digital Literacy tracker">'
+      +'<div class="mhead"><h2>Digital Literacy tracker &middot; Class of '+first+' and later</h2><button class="sbtn secondary" id="dlClose" type="button">Close</button></div>'
+      +'<div class="mtools">'
+      +'<select id="dlSchool" aria-label="School"></select>'
+      +'<select id="dlClass" aria-label="Class"></select>'
+      +'<select id="dlStatus" aria-label="Status"><option value="">All statuses</option><option>Met</option><option>In progress</option><option>Not started</option></select>'
+      +'<input type="search" id="dlSearch" placeholder="Search name…" aria-label="Search name">'
+      +'<span style="flex:1"></span><button class="sbtn" id="dlCsv" type="button">Download list (CSV)</button></div>'
+      +'<div class="mscroll" id="dlBody"></div></div>';
+    document.body.appendChild(overlay);
+    const sch = overlay.querySelector('#dlSchool');
+    sch.innerHTML = '<option value="">Both schools</option>'+SCHOOLS.map(x=>'<option value="'+x.key+'">'+esc(x.short)+'</option>').join('');
+    sch.value = school;
+    const cl = overlay.querySelector('#dlClass');
+    cl.innerHTML = '<option value="">All classes</option>'+R.classes.filter(c=>c>=first).map(c=>'<option value="'+c+'">Class of '+c+'</option>').join('');
+    const close = ()=>{ overlay.remove(); document.removeEventListener('keydown',onKey); };
+    const onKey = e=>{ if(e.key==='Escape') close(); };
+    document.addEventListener('keydown',onKey);
+    overlay.querySelector('#dlClose').onclick = close;
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+
+    let shown = [];
+    function render(){
+      const sk = sch.value, ck2 = cl.value, st = overlay.querySelector('#dlStatus').value, q = norm(overlay.querySelector('#dlSearch').value);
+      const scope = roster.filter(p=>p.classYear>=first && (!sk||p.school===sk));
+      const body = overlay.querySelector('#dlBody');
+      if(!roster.length){ body.innerHTML = '<p class="dl-note">Import a roster first (use <b>Import roster CSV</b>). The tracker lists every student whose class falls under the new Idaho requirement.</p>'; shown=[]; return; }
+      // summary by class
+      const classes = Array.from(new Set(scope.map(p=>p.classYear))).sort();
+      let sum = '<table class="dl sum"><thead><tr><th>Class</th><th>Students</th><th>Met</th><th>In progress</th><th>Not started</th><th>Older plan in Stride</th></tr></thead><tbody>';
+      const tot = {n:0,m:0,i:0,x:0,o:0};
+      classes.forEach(c=>{
+        const g = scope.filter(p=>p.classYear===c);
+        const m = g.filter(p=>dlStatus(p)==='Met').length, i = g.filter(p=>dlStatus(p)==='In progress').length, x = g.filter(p=>dlStatus(p)==='Not started').length;
+        const o = g.filter(p=>dlNote(p).indexOf('Senior Project')!==-1).length;
+        tot.n+=g.length; tot.m+=m; tot.i+=i; tot.x+=x; tot.o+=o;
+        sum += '<tr><td>Class of '+c+'</td><td>'+g.length+'</td><td>'+m+'</td><td>'+i+'</td><td>'+x+'</td><td>'+o+'</td></tr>';
+      });
+      sum += '<tr><td><b>Total</b></td><td><b>'+tot.n+'</b></td><td><b>'+tot.m+'</b></td><td><b>'+tot.i+'</b></td><td><b>'+tot.x+'</b></td><td><b>'+tot.o+'</b></td></tr></tbody></table>';
+      shown = scope.filter(p=>(!ck2||String(p.classYear)===ck2) && (!st||dlStatus(p)===st) && (!q||norm(p.name).indexOf(q)!==-1));
+      let rowsHtml = shown.map(p=>{
+        const s = dlStatus(p); const cls = s==='Met'?'met':(s==='In progress'?'ip':'no');
+        const note = dlNote(p);
+        return '<tr class="go" data-i="'+roster.indexOf(p)+'"><td>'+esc(p.name)+'</td><td>'+esc(p.school)+'</td><td>'+esc(p.grade||'')+'</td><td>'+p.classYear+'</td>'
+          +'<td>'+(p.dl?p.dl.earned:0)+'</td><td>'+(p.dl?p.dl.inProgress:0)+'</td><td><span class="pill '+cls+'">'+s+'</span></td>'
+          +'<td>'+esc(p.dl&&p.dl.courses||'')+(note?'<div class="warn">'+esc(note)+'</div>':'')+'</td></tr>';
+      }).join('');
+      body.innerHTML =
+        '<p class="dl-note">Idaho\'s Digital Literacy credit applies to students graduating after January 1, 2028, so every student in the Class of '+first+' and later is listed. '
+        +'<b>Met</b> = 1 or more credits earned. Click a student to open their plan.</p>'+sum
+        +'<p class="dl-note"><b>'+shown.length+'</b> student'+(shown.length===1?'':'s')+' shown</p>'
+        +'<table class="dl"><thead><tr><th>Student</th><th>School</th><th>Grade</th><th>Class</th><th>Credits earned</th><th>In progress</th><th>Status</th><th>Course(s) / note</th></tr></thead><tbody>'
+        +(rowsHtml||'<tr><td colspan="8">No students match.</td></tr>')+'</tbody></table>';
+      body.querySelectorAll('tr.go').forEach(tr=>tr.addEventListener('click',()=>{
+        const idx = parseInt(tr.getAttribute('data-i'),10); const p = roster[idx]; if(!p) return;
+        school = p.school; $('schoolSel').value = school; current = idx; plan = p;
+        refreshPicker(); renderAll(); close();
+      }));
+    }
+    ['dlSchool','dlClass','dlStatus'].forEach(id=>overlay.querySelector('#'+id).addEventListener('change',render));
+    overlay.querySelector('#dlSearch').addEventListener('input',render);
+    overlay.querySelector('#dlCsv').addEventListener('click',()=>{
+      const q2 = v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+      const lines = [['School','Student','Grade','Class','Digital Literacy Credits Earned','Digital Literacy Credits In Progress','Status','Courses','Note'].join(',')];
+      shown.forEach(p=>lines.push([p.school,p.name,p.grade||'',p.classYear,p.dl?p.dl.earned:0,p.dl?p.dl.inProgress:0,dlStatus(p),p.dl&&p.dl.courses||'',dlNote(p)].map(q2).join(',')));
+      downloadText('Digital_Literacy_Tracker.csv', lines.join('\r\n')+'\r\n', 'text/csv');
+    });
+    render();
+  }
+  $('dlBtn').addEventListener('click',openTracker);
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
